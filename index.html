@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOSOC - Deuda Ecológica | Bangladesh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-blue-50 to-teal-50 min-h-screen">
+    <!-- Header con bandera ONU -->
+    <header class="bg-gradient-to-r from-green-700 to-teal-700 text-white shadow-2xl">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                        <svg viewBox="0 0 100 100" class="w-12 h-12">
+                            <circle cx="50" cy="50" r="45" fill="#5B92E5"/>
+                            <path d="M50 10 L50 90 M10 50 L90 50 M20 20 L80 80 M80 20 L20 80" stroke="white" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="8" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold">Consejo Económico y Social</h1>
+                        <p class="text-green-100 text-sm mt-1">ECOSOC • Naciones Unidas</p>
+                    </div>
+                </div>
+                <button onclick="exportarCSV()" class="flex items-center gap-2 px-5 py-2.5 bg-white text-green-700 rounded-lg hover:bg-green-50 transition-all shadow-md font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    Exportar Datos
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-green-600 via-teal-600 to-blue-600 rounded-2xl shadow-2xl p-8 text-white mb-8 relative overflow-hidden fade-in">
+            <div class="absolute top-0 right-0 opacity-10">
+                <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                </svg>
+            </div>
+            <div class="relative z-10">
+                <div class="flex items-start gap-4">
+                    <svg class="w-16 h-16 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.67C7.58 16.88 9.38 12 17 9.5V8zm-5 5c0 1.38-.62 2.62-1.59 3.47l.83.83A4.992 4.992 0 0013 13c0-1.38-.62-2.62-1.59-3.47l-.83.83A3.502 3.502 0 0112 13z"/>
+                    </svg>
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">El planeta también tiene cuentas pendientes</h2>
+                        <p class="text-xl text-green-50 leading-relaxed mb-4">
+                            La <strong>deuda ecológica</strong> es la diferencia entre lo que el Norte Global ha tomado del Sur Global y lo que ha devuelto. Recursos naturales, ecosistemas y biodiversidad explotados sin compensación justa.
+                        </p>
+                        <p class="text-lg text-green-100 italic">"No hay justicia económica sin justicia ecológica."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Badge Bangladesh -->
+        <div class="bg-gradient-to-r from-green-700 to-red-700 rounded-2xl shadow-xl p-6 mb-8 text-white fade-in">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl shadow-lg">🇧🇩</div>
+                    <div>
+                        <div class="text-sm opacity-90 mb-1">Presentado por la Delegación de</div>
+                        <h3 class="text-3xl font-bold">Bangladesh</h3>
+                        <p class="text-green-100 mt-1">Acreedor ecológico • Víctima del cambio climático</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm opacity-90">Huella Ecológica</div>
+                    <div class="text-3xl font-bold">0.7 gha</div>
+                    <div class="text-xs opacity-75">Por persona</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 fade-in">
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                <div class="flex items-center gap-3 mb-2">
+                    <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    <div class="text-sm text-gray-600">Países Analizados</div>
+                </div>
+                <div class="text-3xl font-bold text-gray-900" id="total-paises">30</div>
+                <div class="text-xs text-gray-500 mt-2">En el comité</div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                <div class="flex items-center gap-3 mb-2">
+                    <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <div class="text-sm text-gray-600">Deudores Ecológicos</div>
+                </div>
+                <div class="text-3xl font-bold text-gray-900" id="total-deudores">0</div>
+                <div class="text-xs text-gray-500 mt-2">Norte Global principalmente</div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+                <div class="flex items-center gap-3 mb-2">
+                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/>
+                    </svg>
+                    <div class="text-sm text-gray-600">Acreedores Ecológicos</div>
+                </div>
+                <div class="text-3xl font-bold text-gray-900" id="total-acreedores">0</div>
+                <div class="text-xs text-gray-500 mt-2">Sur Global proveyendo</div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-teal-500">
+                <div class="flex items-center gap-3 mb-2">
+                    <svg class="w-6 h-6 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                    </svg>
+                    <div class="text-sm text-gray-600">Compensación Promedio</div>
+                </div>
+                <div class="text-3xl font-bold text-gray-900">18%</div>
+                <div class="text-xs text-gray-500 mt-2">Del daño causado</div>
+            </div>
+        </div>
+
+        <!-- Grid principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Panel izquierdo -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 fade-in">
+                <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                    </svg>
+                    Países Participantes
+                </h3>
+                
+                <div class="space-y-3 mb-4">
+                    <input 
+                        id="busqueda"
+                        type="text"
+                        placeholder="Buscar país..."
+                        oninput="filtrarPaises()"
+                        class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    />
+                    
+                    <select 
+                        id="filtroClasificacion"
+                        onchange="filtrarPaises()"
+                        class="w-full px-4 py-2.5 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                    >
+                        <option value="todos">Todos los países</option>
+                        <option value="Deudor">Deudores Ecológicos</option>
+                        <option value="Acreedor">Acreedores Ecológicos</option>
+                    </select>
+                </div>
+                
+                <div id="lista-paises" class="space-y-2 max-h-[700px] overflow-y-auto pr-2"></div>
+            </div>
+
+            <!-- Panel derecho -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Detalles del país -->
+                <div id="detalle-pais" class="bg-gradient-to-br from-white to-green-50 rounded-2xl shadow-xl p-8 border-2 border-green-200 fade-in"></div>
+
+                <!-- Calculadora -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-teal-200 fade-in">
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-6 h-6 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.67C7.58 16.88 9.38 12 17 9.5V8z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-gray-900">Calcula Tu Huella Ecológica</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Consumo Anual ($USD)</label>
+                            <input type="number" id="consumoAnual" value="1000" oninput="calcularHuellaPersonal()" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 transition-all" placeholder="1000"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Transporte Anual (km)</label>
+                            <input type="number" id="transporteKm" value="5000" oninput="calcularHuellaPersonal()" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 transition-all" placeholder="5000"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Dieta</label>
+                            <select id="dietaTipo" onchange="calcularHuellaPersonal()" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 transition-all">
+                                <option value="vegana">Vegana</option>
+                                <option value="vegetariana">Vegetariana</option>
+                                <option value="mixta" selected>Mixta</option>
+                                <option value="carnivora">Alta en carne</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="resultado-huella" class="bg-gradient-to-br from-teal-100 to-green-100 rounded-xl p-6 text-center"></div>
+                </div>
+
+                <!-- Qué es la deuda ecológica -->
+                <div class="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl p-8 border-2 border-blue-200 fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                        ¿Qué es la Deuda Ecológica?
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-xl p-5 shadow-md">
+                            <h4 class="font-bold text-gray-900 mb-2">🌍 Definición</h4>
+                            <p class="text-sm text-gray-700">
+                                La deuda ecológica es el <strong>pasivo ambiental</strong> que el Norte Global tiene con el Sur Global por la explotación histórica y actual de recursos naturales, biodiversidad y servicios ecosistémicos sin compensación justa.
+                            </p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-5 shadow-md">
+                            <h4 class="font-bold text-gray-900 mb-2">⛏️ Ejemplos Concretos</h4>
+                            <ul class="text-sm text-gray-700 space-y-2">
+                                <li>• Extracción de minerales, petróleo y madera sin reparación ambiental</li>
+                                <li>• Contaminación por residuos electrónicos y textiles exportados</li>
+                                <li>• Emisiones de CO₂ que causan cambio climático en países vulnerables</li>
+                                <li>• Biopiratería: uso de recursos genéticos sin compensación</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-5 shadow-md">
+                            <h4 class="font-bold text-gray-900 mb-2">📊 Los Números</h4>
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div class="bg-red-50 p-3 rounded">
+                                    <div class="font-bold text-red-700">86%</div>
+                                    <div class="text-gray-600 text-xs">De materiales extraídos del Sur Global</div>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded">
+                                    <div class="font-bold text-orange-700">$47 trillones</div>
+                                    <div class="text-gray-600 text-xs">Valor de recursos no compensados</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla comparativa -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-gray-200 fade-in">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Tabla Comparativa Global</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b-2 border-gray-300">
+                                    <th class="text-left p-3 font-bold text-gray-900">País</th>
+                                    <th class="text-right p-3 font-bold text-gray-900">Huella</th>
+                                    <th class="text-right p-3 font-bold text-gray-900">Biocap.</th>
+                                    <th class="text-right p-3 font-bold text-gray-900">Balance</th>
+                                    <th class="text-right p-3 font-bold text-gray-900">CO₂</th>
+                                    <th class="text-center p-3 font-bold text-gray-900">Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-paises"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Solución propuesta -->
+                <div class="bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 rounded-2xl shadow-xl p-8 text-white fade-in">
+                    <h3 class="text-3xl font-bold mb-4 flex items-center gap-3">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        </svg>
+                        Observatorio Digital de Justicia Ecológica
+                    </h3>
+                    <p class="text-lg mb-6 text-white/90">
+                        Proponemos crear una plataforma global con IA que monitoree, analice y transparente el impacto ambiental de cada país en tiempo real, promoviendo la rendición de cuentas y la justicia climática.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white/20 backdrop-blur rounded-xl p-4">
+                            <div class="text-2xl mb-2">🤖</div>
+                            <h4 class="font-bold mb-2">IA para Análisis</h4>
+                            <p class="text-sm text-white/80">Algoritmos que evalúen políticas ambientales y recomienden acciones</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur rounded-xl p-4">
+                            <div class="text-2xl mb-2">📊</div>
+                            <h4 class="font-bold mb-2">Datos Abiertos</h4>
+                            <p class="text-sm text-white/80">Transparencia total de extracción, emisiones y compensaciones</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur rounded-xl p-4">
+                            <div class="text-2xl mb-2">⚖️</div>
+                            <h4 class="font-bold mb-2">Justicia Climática</h4>
+                            <p class="text-sm text-white/80">Mecanismos de compensación y transferencia tecnológica</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3">
+                        <button class="px-6 py-3 bg-white text-purple-700 rounded-lg font-bold hover:bg-gray-100 transition-all shadow-lg">
+                            Unirse a la Iniciativa
+                        </button>
+                        <button class="px-6 py-3 bg-black/30 backdrop-blur text-white rounded-lg font-bold hover:bg-black/40 transition-all">
+                            Descargar Propuesta
+                        </button>
+                        <button onclick="exportarCSV()" class="px-6 py-3 bg-black/30 backdrop-blur text-white rounded-lg font-bold hover:bg-black/40 transition-all">
+                            Compartir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-6 mt-12 pb-8">
+        <div class="bg-gradient-to-r from-green-800 to-teal-900 rounded-2xl shadow-xl p-8 text-white">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-bold text-lg mb-3">Sobre este proyecto</h4>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Herramienta educativa e interactiva sobre deuda ecológica, desarrollada para el ECOSOC de las Naciones Unidas. Promoviendo justicia climática y responsabilidad ambiental global.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-3">Delegación</h4>
+                    <p class="text-green-100 text-sm">
+                        🇧🇩 <strong>Bangladesh</strong><br/>
+                        Acreedor ecológico<br/>
+                        Primera línea del cambio climático
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-3">Referencias</h4>
+                    <div class="text-green-100 text-sm space-y-1">
+                        <div>• Global Footprint Network</div>
+                        <div>• ONU Medio Ambiente</div>
+                        <div>• Banco Mundial</div>
+                        <div>• IPCC</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-green-700 text-center text-sm text-green-200">
+                <p class="font-medium text-lg mb-2">"No hay justicia económica sin justicia ecológica"</p>
+                <p>Creado por la Delegación de Bangladesh • ECOSOC 2025 • Datos basados en fuentes oficiales</p>
+                <p class="mt-2">🌍 El planeta también tiene cuentas pendientes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Datos de países en JSON
+        const paisesData = [
+            { id: 1, pais: 'Bangladesh', huellaEcologica: 0.7, biocapacidad: 0.4, deficit: -0.3, emisionesPerCapita: 0.5, deforestacion: 2.1, extraccionRecursos: 45, compensacionRecibida: 5, clasificacion: 'Acreedor' },
+            { id: 2, pais: 'Estados Unidos', huellaEcologica: 8.1, biocapacidad: 3.5, deficit: 4.6, emisionesPerCapita: 15.5, deforestacion: 0.3, extraccionRecursos: 15, compensacionRecibida: 85, clasificacion: 'Deudor' },
+            { id: 3, pais: 'China', huellaEcologica: 3.7, biocapacidad: 0.9, deficit: 2.8, emisionesPerCapita: 7.4, deforestacion: 1.2, extraccionRecursos: 65, compensacionRecibida: 45, clasificacion: 'Deudor' },
+            { id: 4, pais: 'India', huellaEcologica: 1.2, biocapacidad: 0.5, deficit: 0.7, emisionesPerCapita: 1.9, deforestacion: 3.8, extraccionRecursos: 55, compensacionRecibida: 12, clasificacion: 'Deudor' },
+            { id: 5, pais: 'Argentina', huellaEcologica: 3.1, biocapacidad: 6.2, deficit: -3.1, emisionesPerCapita: 4.2, deforestacion: 5.2, extraccionRecursos: 70, compensacionRecibida: 8, clasificacion: 'Acreedor' },
+            { id: 6, pais: 'Nigeria', huellaEcologica: 1.1, biocapacidad: 1.4, deficit: -0.3, emisionesPerCapita: 0.6, deforestacion: 3.7, extraccionRecursos: 82, compensacionRecibida: 3, clasificacion: 'Acreedor' },
+            { id: 7, pais: 'Francia', huellaEcologica: 4.7, biocapacidad: 2.8, deficit: 1.9, emisionesPerCapita: 5.1, deforestacion: 0.1, extraccionRecursos: 25, compensacionRecibida: 75, clasificacion: 'Deudor' },
+            { id: 8, pais: 'Alemania', huellaEcologica: 4.8, biocapacidad: 1.9, deficit: 2.9, emisionesPerCapita: 8.5, deforestacion: 0.2, extraccionRecursos: 18, compensacionRecibida: 82, clasificacion: 'Deudor' },
+            { id: 9, pais: 'Japón', huellaEcologica: 4.6, biocapacidad: 0.6, deficit: 4.0, emisionesPerCapita: 8.7, deforestacion: 0.1, extraccionRecursos: 12, compensacionRecibida: 88, clasificacion: 'Deudor' },
+            { id: 10, pais: 'Reino Unido', huellaEcologica: 4.2, biocapacidad: 1.4, deficit: 2.8, emisionesPerCapita: 5.4, deforestacion: 0.2, extraccionRecursos: 20, compensacionRecibida: 80, clasificacion: 'Deudor' },
+            { id: 11, pais: 'Brasil', huellaEcologica: 2.8, biocapacidad: 9.1, deficit: -6.3, emisionesPerCapita: 2.2, deforestacion: 8.5, extraccionRecursos: 78, compensacionRecibida: 10, clasificacion: 'Acreedor' },
+            { id: 12, pais: 'Sudáfrica', huellaEcologica: 2.7, biocapacidad: 1.0, deficit: 1.7, emisionesPerCapita: 7.4, deforestacion: 2.8, extraccionRecursos: 75, compensacionRecibida: 15, clasificacion: 'Deudor' },
+            { id: 13, pais: 'Indonesia', huellaEcologica: 1.6, biocapacidad: 1.6, deficit: 0, emisionesPerCapita: 2.3, deforestacion: 6.8, extraccionRecursos: 85, compensacionRecibida: 6, clasificacion: 'Acreedor' },
+            { id: 14, pais: 'México', huellaEcologica: 2.5, biocapacidad: 1.4, deficit: 1.1, emisionesPerCapita: 3.7, deforestacion: 4.2, extraccionRecursos: 68, compensacionRecibida: 18, clasificacion: 'Deudor' },
+            { id: 15, pais: 'Egipto', huellaEcologica: 1.7, biocapacidad: 0.5, deficit: 1.2, emisionesPerCapita: 2.3, deforestacion: 1.2, extraccionRecursos: 58, compensacionRecibida: 8, clasificacion: 'Deudor' },
+            { id: 16, pais: 'Etiopía', huellaEcologica: 0.9, biocapacidad: 1.0, deficit: -0.1, emisionesPerCapita: 0.1, deforestacion: 4.5, extraccionRecursos: 72, compensacionRecibida: 2, clasificacion: 'Acreedor' },
+            { id: 17, pais: 'Ghana', huellaEcologica: 1.7, biocapacidad: 1.9, deficit: -0.2, emisionesPerCapita: 0.6, deforestacion: 3.9, extraccionRecursos: 80, compensacionRecibida: 4, clasificacion: 'Acreedor' },
+            { id: 18, pais: 'Pakistán', huellaEcologica: 0.8, biocapacidad: 0.4, deficit: 0.4, emisionesPerCapita: 1.0, deforestacion: 2.8, extraccionRecursos: 62, compensacionRecibida: 6, clasificacion: 'Deudor' },
+            { id: 19, pais: 'Filipinas', huellaEcologica: 1.2, biocapacidad: 0.6, deficit: 0.6, emisionesPerCapita: 1.3, deforestacion: 5.2, extraccionRecursos: 70, compensacionRecibida: 8, clasificacion: 'Deudor' },
+            { id: 20, pais: 'Vietnam', huellaEcologica: 1.7, biocapacidad: 0.9, deficit: 0.8, emisionesPerCapita: 2.3, deforestacion: 4.5, extraccionRecursos: 68, compensacionRecibida: 10, clasificacion: 'Deudor' },
+            { id: 21, pais: 'Colombia', huellaEcologica: 1.9, biocapacidad: 4.5, deficit: -2.6, emisionesPerCapita: 1.9, deforestacion: 6.5, extraccionRecursos: 75, compensacionRecibida: 7, clasificacion: 'Acreedor' },
+            { id: 22, pais: 'Chile', huellaEcologica: 3.7, biocapacidad: 3.1, deficit: 0.6, emisionesPerCapita: 4.7, deforestacion: 1.8, extraccionRecursos: 82, compensacionRecibida: 20, clasificacion: 'Deudor' },
+            { id: 23, pais: 'Perú', huellaEcologica: 2.0, biocapacidad: 3.8, deficit: -1.8, emisionesPerCapita: 1.8, deforestacion: 5.8, extraccionRecursos: 78, compensacionRecibida: 9, clasificacion: 'Acreedor' },
+            { id: 24, pais: 'Corea del Sur', huellaEcologica: 5.3, biocapacidad: 0.5, deficit: 4.8, emisionesPerCapita: 12.3, deforestacion: 0.1, extraccionRecursos: 22, compensacionRecibida: 78, clasificacion: 'Deudor' },
+            { id: 25, pais: 'Australia', huellaEcologica: 6.7, biocapacidad: 12.8, deficit: -6.1, emisionesPerCapita: 16.8, deforestacion: 1.2, extraccionRecursos: 45, compensacionRecibida: 55, clasificacion: 'Acreedor' },
+            { id: 26, pais: 'Canadá', huellaEcologica: 7.0, biocapacidad: 9.3, deficit: -2.3, emisionesPerCapita: 15.4, deforestacion: 0.8, extraccionRecursos: 38, compensacionRecibida: 62, clasificacion: 'Acreedor' },
+            { id: 27, pais: 'Noruega', huellaEcologica: 4.9, biocapacidad: 5.8, deficit: -0.9, emisionesPerCapita: 8.3, deforestacion: 0.1, extraccionRecursos: 35, compensacionRecibida: 65, clasificacion: 'Acreedor' },
+            { id: 28, pais: 'Suiza', huellaEcologica: 4.4, biocapacidad: 1.2, deficit: 3.2, emisionesPerCapita: 4.3, deforestacion: 0.1, extraccionRecursos: 15, compensacionRecibida: 85, clasificacion: 'Deudor' },
+            { id: 29, pais: 'Kenia', huellaEcologica: 1.0, biocapacidad: 0.5, deficit: 0.5, emisionesPerCapita: 0.4, deforestacion: 3.5, extraccionRecursos: 72, compensacionRecibida: 5, clasificacion: 'Deudor' },
+            { id: 30, pais: 'Sri Lanka', huellaEcologica: 1.2, biocapacidad: 0.5, deficit: 0.7, emisionesPerCapita: 0.9, deforestacion: 2.8, extraccionRecursos: 65, compensacionRecibida: 7, clasificacion: 'Deudor' }
+        ];
+
+        let paisSeleccionado = paisesData[0];
+
+        // Inicializar
+        function init() {
+            actualizarEstadisticas();
+            renderizarListaPaises();
+            renderizarTablaPaises();
+            mostrarDetallePais(paisSeleccionado);
+            calcularHuellaPersonal();
+        }
+
+        // Actualizar estadísticas
+        function actualizarEstadisticas() {
+            const deudores = paisesData.filter(p => p.clasificacion === 'Deudor').length;
+            const acreedores = paisesData.filter(p => p.clasificacion === 'Acreedor').length;
+            document.getElementById('total-deudores').textContent = deudores;
+            document.getElementById('total-acreedores').textContent = acreedores;
+        }
+
+        // Filtrar países
+        function filtrarPaises() {
+            const busqueda = document.getElementById('busqueda').value.toLowerCase();
+            const filtro = document.getElementById('filtroClasificacion').value;
+            
+            let filtrados = paisesData;
+            
+            if (busqueda) {
+                filtrados = filtrados.filter(p => p.pais.toLowerCase().includes(busqueda));
+            }
+            
+            if (filtro !== 'todos') {
+                filtrados = filtrados.filter(p => p.clasificacion === filtro);
+            }
+            
+            renderizarListaPaises(filtrados);
+        }
+
+        // Renderizar lista de países
+        function renderizarListaPaises(paises = paisesData) {
+            const lista = document.getElementById('lista-paises');
+            lista.innerHTML = paises.map(p => {
+                const esSeleccionado = paisSeleccionado.id === p.id;
+                const claseSeleccion = esSeleccionado 
+                    ? 'bg-gradient-to-r from-green-50 to-blue-50 border-green-400 shadow-md' 
+                    : 'bg-gray-50 border-gray-200 hover:border-gray-300 hover:shadow';
+                
+                const claseTipo = p.clasificacion === 'Deudor' 
+                    ? 'bg-red-100 text-red-700' 
+                    : 'bg-green-100 text-green-700';
+                
+                const colorBarra = p.deficit > 3 ? 'bg-red-500' :
+                                   p.deficit > 1 ? 'bg-orange-500' :
+                                   p.deficit > 0 ? 'bg-yellow-500' :
+                                   'bg-green-500';
+                
+                return `
+                    <div onclick="seleccionarPais(${p.id})" class="p-4 rounded-xl cursor-pointer transition-all border-2 ${claseSeleccion}">
+                        <div class="flex justify-between items-start mb-2">
+                            <strong class="text-lg text-gray-900">${p.pais}</strong>
+                            <span class="text-xs px-2 py-1 rounded-full font-medium ${claseTipo}">
+                                ${p.clasificacion}
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                            <div>Huella: <strong class="text-gray-900">${p.huellaEcologica} gha</strong></div>
+                            <div>Bio: <strong class="text-gray-900">${p.biocapacidad} gha</strong></div>
+                        </div>
+                        <div class="mt-2">
+                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                <div class="${colorBarra} h-2 rounded-full transition-all" style="width: ${Math.min(Math.abs(p.deficit) * 15, 100)}%"></div>
+                            </div>
+                            <span class="text-xs text-gray-500 mt-1">
+                                ${p.deficit > 0 ? `Déficit: +${p.deficit}` : `Superávit: ${Math.abs(p.deficit)}`} gha
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Seleccionar país
+        function seleccionarPais(id) {
+            paisSeleccionado = paisesData.find(p => p.id === id);
+            renderizarListaPaises();
+            mostrarDetallePais(paisSeleccionado);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Mostrar detalle del país
+        function mostrarDetallePais(pais) {
+            const claseTipo = pais.clasificacion === 'Deudor' 
+                ? 'bg-red-100 text-red-700' 
+                : 'bg-green-100 text-green-700';
+            
+            const colorDeficit = pais.deficit > 0 ? 'text-red-600' : 'text-green-600';
+            
+            const anchoHuella = (pais.huellaEcologica / (pais.huellaEcologica + pais.biocapacidad)) * 100;
+            const anchoBio = (pais.biocapacidad / (pais.huellaEcologica + pais.biocapacidad)) * 100;
+            
+            const contexto = pais.clasificacion === 'Deudor' 
+                ? 'Este país consume más recursos de los que su territorio puede regenerar. Su estilo de vida depende de la extracción de recursos del Sur Global, contribuyendo a la deuda ecológica.'
+                : 'Este país provee más biocapacidad de la que consume. Sus recursos naturales son extraídos por el Norte Global sin compensación justa, haciéndolo acreedor ecológico.';
+            
+            const colorCompensacion = pais.compensacionRecibida > 50 
+                ? 'bg-gradient-to-r from-green-500 to-green-600' 
+                : 'bg-gradient-to-r from-red-500 to-red-600';
+            
+            document.getElementById('detalle-pais').innerHTML = `
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-2">${pais.pais}</h2>
+                        <p class="text-gray-600">Análisis de huella ecológica y deuda ambiental</p>
+                    </div>
+                    <div class="px-4 py-2 rounded-xl font-bold ${claseTipo}">
+                        ${pais.clasificacion} Ecológico
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-green-500">
+                        <div class="text-xs text-gray-600 mb-1">Huella Ecológica</div>
+                        <div class="text-2xl font-bold text-gray-900">${pais.huellaEcologica}</div>
+                        <div class="text-xs text-gray-500 mt-1">gha per cápita</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-blue-500">
+                        <div class="text-xs text-gray-600 mb-1">Biocapacidad</div>
+                        <div class="text-2xl font-bold text-gray-900">${pais.biocapacidad}</div>
+                        <div class="text-xs text-gray-500 mt-1">gha per cápita</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-orange-500">
+                        <div class="text-xs text-gray-600 mb-1">Balance</div>
+                        <div class="text-2xl font-bold ${colorDeficit}">
+                            ${pais.deficit > 0 ? '+' : ''}${pais.deficit}
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1">gha deficit/superávit</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-red-500">
+                        <div class="text-xs text-gray-600 mb-1">Emisiones CO₂</div>
+                        <div class="text-2xl font-bold text-gray-900">${pais.emisionesPerCapita}</div>
+                        <div class="text-xs text-gray-500 mt-1">Toneladas per cápita</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-yellow-500">
+                        <div class="text-xs text-gray-600 mb-1">Deforestación</div>
+                        <div class="text-2xl font-bold text-gray-900">${pais.deforestacion}%</div>
+                        <div class="text-xs text-gray-500 mt-1">Anual</div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-purple-500">
+                        <div class="text-xs text-gray-600 mb-1">Extracción</div>
+                        <div class="text-2xl font-bold text-gray-900">${pais.extraccionRecursos}%</div>
+                        <div class="text-xs text-gray-500 mt-1">Recursos naturales</div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <div class="text-sm font-semibold text-gray-700 mb-3">Análisis de Impacto Ecológico</div>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Huella Ecológica vs Biocapacidad</span>
+                                <span class="font-bold ${colorDeficit}">
+                                    ${pais.deficit > 0 ? 'Déficit' : 'Superávit'}
+                                </span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 overflow-hidden flex">
+                                <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-3 transition-all duration-500" style="width: ${anchoBio}%"></div>
+                                <div class="bg-gradient-to-r from-red-500 to-red-600 h-3 transition-all duration-500" style="width: ${anchoHuella}%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Biocapacidad: ${pais.biocapacidad} gha</span>
+                                <span>Huella: ${pais.huellaEcologica} gha</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Extracción de Recursos</span>
+                                <span class="font-bold text-orange-700">${pais.extraccionRecursos}%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 overflow-hidden">
+                                <div class="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-500" style="width: ${pais.extraccionRecursos}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-600">Compensación Recibida</span>
+                                <span class="font-bold ${pais.compensacionRecibida > 50 ? 'text-green-700' : 'text-red-700'}">
+                                    ${pais.compensacionRecibida}%
+                                </span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 overflow-hidden">
+                                <div class="${colorCompensacion} h-3 rounded-full transition-all duration-500" style="width: ${pais.compensacionRecibida}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
+                    <h4 class="font-bold text-gray-900 mb-2">💡 Contexto: ${pais.pais}</h4>
+                    <p class="text-sm text-gray-700">${contexto}</p>
+                </div>
+            `;
+        }
+
+        // Calcular huella personal
+        function calcularHuellaPersonal() {
+            const consumo = Number(document.getElementById('consumoAnual').value) || 0;
+            const transporte = Number(document.getElementById('transporteKm').value) || 0;
+            const dieta = document.getElementById('dietaTipo').value;
+            
+            const dietaFactores = { vegana: 1.5, vegetariana: 2.0, mixta: 2.5, carnivora: 3.5 };
+            const dietaImpacto = dietaFactores[dieta] || 2.5;
+            
+            const consumoImpacto = consumo * 0.0005;
+            const transporteImpacto = transporte * 0.0002;
+            
+            const huella = Math.round((consumoImpacto + transporteImpacto + dietaImpacto) * 100) / 100;
+            const huellaPromedio = 2.8;
+            
+            const tierras = Math.round((huella / 1.7) * 10) / 10;
+            const comparacion = Math.round((huella / paisSeleccionado.huellaEcologica) * 100);
+            const co2 = Math.round(huella * 1.4 * 10) / 10;
+            
+            const mensaje = huella < huellaPromedio 
+                ? `✓ ¡Excelente! Estás por debajo del promedio mundial (${huellaPromedio} gha)` 
+                : `⚠ Estás por encima del promedio mundial (${huellaPromedio} gha)`;
+            
+            const colorMensaje = huella < huellaPromedio ? 'text-green-700' : 'text-orange-700';
+            
+            document.getElementById('resultado-huella').innerHTML = `
+                <div class="text-sm text-gray-600 mb-2">Tu Huella Ecológica Estimada</div>
+                <div class="text-5xl font-bold text-teal-700 mb-2">${huella}</div>
+                <div class="text-lg text-gray-700 mb-4">gha/año</div>
+                
+                <div class="bg-white/60 rounded-lg p-3 text-sm">
+                    <p class="${colorMensaje}">${mensaje}</p>
+                </div>
+
+                <div class="mt-4 text-xs text-gray-600">
+                    Promedio mundial: ${huellaPromedio} gha/año • Bangladesh: 0.7 gha/año • EE.UU.: 8.1 gha/año
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-1">🌱</div>
+                        <div class="text-xs font-medium text-gray-700">Si todos vivieran como tú</div>
+                        <div class="text-lg font-bold text-green-700 mt-1">${tierras} Tierras</div>
+                    </div>
+                    
+                    <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-1">💧</div>
+                        <div class="text-xs font-medium text-gray-700">Comparado con ${paisSeleccionado.pais}</div>
+                        <div class="text-lg font-bold text-blue-700 mt-1">${comparacion}%</div>
+                    </div>
+                    
+                    <div class="bg-orange-50 border-2 border-orange-200 rounded-lg p-4 text-center">
+                        <div class="text-2xl mb-1">🔥</div>
+                        <div class="text-xs font-medium text-gray-700">CO₂ equivalente</div>
+                        <div class="text-lg font-bold text-orange-700 mt-1">${co2}t</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Renderizar tabla de países
+        function renderizarTablaPaises() {
+            const tabla = document.getElementById('tabla-paises');
+            tabla.innerHTML = paisesData.map(p => {
+                const esSeleccionado = paisSeleccionado.id === p.id ? 'bg-green-50' : '';
+                
+                const colorServicio = p.deficit > 3 ? 'bg-red-100 text-red-800' :
+                                      p.deficit > 1 ? 'bg-orange-100 text-orange-800' :
+                                      p.deficit > 0 ? 'bg-yellow-100 text-yellow-800' :
+                                      'bg-green-100 text-green-800';
+                
+                const colorTipo = p.clasificacion === 'Deudor' 
+                    ? 'bg-red-100 text-red-800' 
+                    : 'bg-green-100 text-green-800';
+                
+                return `
+                    <tr onclick="seleccionarPais(${p.id})" class="border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors ${esSeleccionado}">
+                        <td class="p-3 font-semibold text-gray-900">${p.pais}</td>
+                        <td class="p-3 text-right text-gray-700">${p.huellaEcologica}</td>
+                        <td class="p-3 text-right text-gray-700">${p.biocapacidad}</td>
+                        <td class="p-3 text-right">
+                            <span class="px-2 py-1 rounded-full text-xs font-medium ${colorServicio}">
+                                ${p.deficit > 0 ? '+' : ''}${p.deficit}
+                            </span>
+                        </td>
+                        <td class="p-3 text-right text-gray-700">${p.emisionesPerCapita}t</td>
+                        <td class="p-3 text-center">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold ${colorTipo}">
+                                ${p.clasificacion}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Exportar CSV
+        function exportarCSV() {
+            const encabezado = ['País', 'Huella Ecológica', 'Biocapacidad', 'Déficit/Superávit', 'Emisiones Per Cápita', 'Deforestación %', 'Extracción Recursos %', 'Compensación %', 'Clasificación'];
+            const filas = paisesData.map(p => [
+                p.pais, 
+                p.huellaEcologica, 
+                p.biocapacidad, 
+                p.deficit, 
+                p.emisionesPerCapita, 
+                p.deforestacion, 
+                p.extraccionRecursos, 
+                p.compensacionRecibida, 
+                p.clasificacion
+            ]);
+            
+            const csv = [encabezado, ...filas].map(fila => fila.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ecosoc_deuda_ecologica.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Inicializar al cargar
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
